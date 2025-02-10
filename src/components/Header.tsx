@@ -1,7 +1,13 @@
 
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const location = useLocation();
+
+  const isActive = (path: string) => {
+    return location.pathname === path ? "text-luxe-text" : "text-luxe-textLight";
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
       <div className="container mx-auto px-4">
@@ -10,18 +16,15 @@ const Header = () => {
             LuxInteriors
           </Link>
           <nav className="hidden md:flex space-x-8">
-            <Link to="/" className="text-luxe-textLight hover:text-luxe-text transition-colors">
+            <Link to="/" className={`${isActive('/')} hover:text-luxe-text transition-colors`}>
               Home
             </Link>
-            <a href="#about" className="text-luxe-textLight hover:text-luxe-text transition-colors">
-              About
-            </a>
-            <a href="#services" className="text-luxe-textLight hover:text-luxe-text transition-colors">
+            <Link to="/services" className={`${isActive('/services')} hover:text-luxe-text transition-colors`}>
               Services
-            </a>
-            <a href="#portfolio" className="text-luxe-textLight hover:text-luxe-text transition-colors">
+            </Link>
+            <Link to="/portfolio" className={`${isActive('/portfolio')} hover:text-luxe-text transition-colors`}>
               Portfolio
-            </a>
+            </Link>
             <a href="#contact" className="text-luxe-textLight hover:text-luxe-text transition-colors">
               Contact
             </a>
